@@ -16,13 +16,13 @@ export class SignupComponent {
 
   constructor(private fb: FormBuilder, private Apis:ApiService, private router: Router) {
     this.registerForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPass: ['', Validators.required]
+      firstName: [, Validators.required],
+      lastName: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
+      phone: [, Validators.required],
+      username: [, Validators.required],
+      password: [, Validators.required],
+      confirmPass: [, Validators.required]
     });
   }
 
@@ -51,11 +51,9 @@ export class SignupComponent {
     this.Apis.post(endpoints.register, formData)
       .subscribe(
         (response) => {
-          console.log(response)
           this.router.navigate(['/login'])
         }
       );
-      console.log(formData)
   }
 
   onFileChange(event: Event) {

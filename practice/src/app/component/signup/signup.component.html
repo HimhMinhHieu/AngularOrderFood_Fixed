@@ -10,47 +10,47 @@
               <form [formGroup]="registerForm" (submit)="register($event)">
                 <!-- FirstName input -->
                 <div class="form-floating mb-4">
-                  <input type="text" id="firstName" class="form-control form-control-lg" formControlName="firstName"/>
+                  <input type="text" id="firstName" class="form-control form-control-lg" formControlName=firstName/>
                   <label class="form-label" for="firstName">First Name</label>
                 </div>
       
                 <!-- LastName input -->
                 <div class="form-floating mb-4">
-                  <input type="text" id="lastName" class="form-control form-control-lg" formControlName="lastName" />
+                  <input type="text" id="lastName" class="form-control form-control-lg" formControlName=lastName />
                   <label class="form-label" for="lastName">Last Name</label>
                 </div>
 
                 <!-- Username input -->
                 <div class="form-floating mb-4">
-                  <input type="text" id="username" class="form-control form-control-lg" formControlName="username" />
+                  <input type="text" id="username" class="form-control form-control-lg" formControlName=username />
                   <label class="form-label" for="username">Username</label>
                 </div>
       
                 <!-- Password input -->
                 <div class="form-floating mb-4">
-                  <input type="password" id="pw" class="form-control form-control-lg" formControlName="password"/>
+                  <input type="password" id="pw" class="form-control form-control-lg" formControlName=password/>
                   <label class="form-label" for="pw">Password</label>
                 </div>
                 <div class="form-floating mb-4">
-                  <input type="password" id="pwcf" class="form-control form-control-lg" formControlName="confirmPass"/>
+                  <input type="password" id="pwcf" class="form-control form-control-lg" formControlName=confirmPass/>
                   <label class="form-label" for="pwcf">Confirm Password</label>
                 </div>
 
                 <!-- Email input -->
                 <div class="form-floating mb-4">
-                  <input type="email" id="email" class="form-control form-control-lg" formControlName="email"/>
+                  <input type="email" id="email" class="form-control form-control-lg" formControlName=email/>
                   <label class="form-label" for="email">Email</label>
                 </div>
       
                 <!-- Phone input -->
                 <div class="form-floating mb-4">
-                  <input type="number" id="phone" class="form-control form-control-lg" formControlName="phone"/>
+                  <input type="number" id="phone" class="form-control form-control-lg" formControlName=phone/>
                   <label class="form-label" for="phone">Phone</label>
                 </div>
 
                 <!-- Image -->
                 <div class="mb-4">   
-                  <label (change)="onFileChange($event)" for="formFile" class="row form-label ms-1" >Avatar</label><input class="form-control" type="file" id="formFile" >
+                  <label for="formFile" class="row form-label ms-1" >Avatar</label><input (change)="onFileChange($event)" class="form-control" type="file" id="formFile" >
                 </div>
 
                 <!-- Submit button -->

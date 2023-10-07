@@ -39,11 +39,7 @@ export class ApiService {
   }
 
   post(endpoint: string, body: any) {
-    return this.http.post(endpoint, body, { headers: {
-       //USE credentials mode
-       Accept: 'multipart/form-data'
-    }
-    });
+    return this.http.post(endpoint, body);
   }
 
   login(endpoint: string, body: any) {
