@@ -39,9 +39,11 @@ export class ApiService {
   }
 
   post(endpoint: string, body: any) {
-    return this.http.post(endpoint, body, {responseType: 'json'}).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post(endpoint, body, { headers: {
+       //USE credentials mode
+       Accept: 'multipart/form-data'
+    }
+    });
   }
 
   login(endpoint: string, body: any) {

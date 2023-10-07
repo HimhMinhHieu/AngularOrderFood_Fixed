@@ -26,7 +26,7 @@
                     <li *ngIf="hUser === false" class="nav-item">
                     <a class="nav-link nav-1" [routerLink]="['/register']" routerLinkActive="router-link-active" id="Forth">ĐĂNG KÝ</a>
                     </li>
-                <li *ngIf="hUser === true" class="nav-item dropdown">
+                <li *ngIf="hUser === true || hUser === undefined" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle nav-1" href="#" id="Third" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{user.firstName}}
                     </a>

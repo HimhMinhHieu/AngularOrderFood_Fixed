@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
 
@@ -9,42 +9,56 @@ import { ApiService, endpoints } from 'src/app/Config/api.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  signupForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    avatar: new FormControl(''),
-  });
+  registerForm: FormGroup;
+  err: string | null = null;
+  loading: boolean = false;
+  avatar: File | null | undefined = null;
 
-  constructor(
-    private apis: ApiService,
-    private router: Router
-  ) { }
-
-  onFileChange(event:any) {
-  
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.signupForm.patchValue({
-        avatar: file
-      });
-    }
+  constructor(private fb: FormBuilder, private Apis:ApiService, private router: Router) {
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPass: ['', Validators.required]
+    });
   }
 
-  onSubmit(){
-    if(this.signupForm.valid){
-      try{
-        this.apis.post(endpoints.register, this.signupForm.value).subscribe((data) => {
-          console.log(data)
-        });
-      }catch(error)
-      {
-        console.log(error);
-      }
-     
+  ngOnInit(): void {
+  }
+
+  register(event: Event) {
+    event.preventDefault();
+    if (this.registerForm.invalid || this.registerForm.value.password !== this.registerForm.value.confirmPass) {
+      return;
     }
+
+    this.loading = true;
+
+    const formData = new FormData();
+    for (const field in this.registerForm.value) {
+      if (field !== 'confirmPass') {
+        formData.append(field, this.registerForm.value[field]);
+      }
+    }
+
+    if (this.avatar) {
+      formData.append('avatar', this.avatar);
+    }
+
+    this.Apis.post(endpoints.register, formData)
+      .subscribe(
+        (response) => {
+          console.log(response)
+          this.router.navigate(['/login'])
+        }
+      );
+      console.log(formData)
+  }
+
+  onFileChange(event: Event) {
+    this.avatar = (event.target as HTMLInputElement).files?.[0];
   }
 }

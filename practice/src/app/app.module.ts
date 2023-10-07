@@ -11,6 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { SignupComponent } from './component/signup/signup.component';
+import { MyUserService } from './Service/my-user.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { SignupComponent } from './component/signup/signup.component';
     ReactiveFormsModule,
     HttpClientModule,
     ],
-  providers: [CookieService],
+  providers: [CookieService, MyUserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

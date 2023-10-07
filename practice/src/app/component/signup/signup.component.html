@@ -7,7 +7,7 @@
                 class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-              <form [formGroup]="signupForm" (submit)="onSubmit()">
+              <form [formGroup]="registerForm" (submit)="register($event)">
                 <!-- FirstName input -->
                 <div class="form-floating mb-4">
                   <input type="text" id="firstName" class="form-control form-control-lg" formControlName="firstName"/>
@@ -31,6 +31,10 @@
                   <input type="password" id="pw" class="form-control form-control-lg" formControlName="password"/>
                   <label class="form-label" for="pw">Password</label>
                 </div>
+                <div class="form-floating mb-4">
+                  <input type="password" id="pwcf" class="form-control form-control-lg" formControlName="confirmPass"/>
+                  <label class="form-label" for="pwcf">Confirm Password</label>
+                </div>
 
                 <!-- Email input -->
                 <div class="form-floating mb-4">
@@ -46,7 +50,7 @@
 
                 <!-- Image -->
                 <div class="mb-4">   
-                  <label (change)="onFileChange($event)" for="formFile" class="row form-label ms-1" >Avatar</label><input class="form-control" type="file" id="formFile" formControlName="avatar">
+                  <label (change)="onFileChange($event)" for="formFile" class="row form-label ms-1" >Avatar</label><input class="form-control" type="file" id="formFile" >
                 </div>
 
                 <!-- Submit button -->
