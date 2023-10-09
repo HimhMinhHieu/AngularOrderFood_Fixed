@@ -19,10 +19,7 @@ export class HomeComponent implements OnInit {
      private store:Store<{counter: {counter: number}}>,
      private cartService: MyCartService
      ){
-    const cartCookie = this.cookie.get('cart');
-    if (cartCookie) {
-      this.cart = JSON.parse(cartCookie);
-    }
+    
    }
  
   ngOnInit(): void {

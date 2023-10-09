@@ -1,6 +1,6 @@
 <h1 class="text-center text-info mt-2">GIỎ HÀNG</h1>
 
-<table class="table table-striped table-bordered table-hover">
+<table *ngIf="carts !== null" class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
       <th>#</th>
@@ -11,18 +11,22 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of carts | keyvalue">
-        <td>{{ item.value.id }}</td>
-        <td>{{ item.value.name }}</td>
-        <td>{{ item.value.unitPrice }} VNĐ</td>
+    <tr *ngFor="let key of Object.keys(carts)">
+        <td>{{ carts[key].id }}</td>
+        <td>{{ carts[key].name }}</td>
+        <td>{{ carts[key].unitPrice }} VNĐ</td>
         <td>
-          <input type="number" [(ngModel)]="item.value.quantity" (ngModelChange)="updateItem(item.value)" />
+          <input type="number" value={{carts[key].quantity}}/>
         </td>
         <td>
-          <button type="button" mat-icon-button (click)="deleteItem(item.value)">&times;</button>
+          <button type="button" (click)="deleteItem(carts[key])">&times;</button>
         </td>
       </tr>
   </tbody>
 </table>
 
 <button type="button" class="btn btn-info">Thanh toán</button>
+
+<div *ngIf="carts === null" class="alert alert-info mt-2">
+  Không có sản phẩm trong giỏ!
+</div>
