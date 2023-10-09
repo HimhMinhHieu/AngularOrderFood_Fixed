@@ -44,7 +44,7 @@
       
                 <!-- Phone input -->
                 <div class="form-floating mb-4">
-                  <input type="number" id="phone" class="form-control form-control-lg" formControlName=phone/>
+                  <input type="tel" pattern="[0-9]{1,11}" id="phone" class="form-control form-control-lg" formControlName=phone/>
                   <label class="form-label" for="phone">Phone</label>
                 </div>
 
@@ -54,7 +54,14 @@
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-lg btn-block" style="width: 100%;">Sign up</button>
+                <button type="submit" [disabled]="loading" class="btn btn-primary btn-lg btn-block" style="width: 100%;">
+                  <ng-container *ngIf="loading">
+                    <app-my-spinner />
+                  </ng-container>              
+                  <ng-container *ngIf="!loading">
+                    Sign Up
+                  </ng-container>
+                </button>
               </form>
               
             </div>

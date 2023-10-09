@@ -12,6 +12,12 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { MyUserService } from './Service/my-user.service';
+import { MySpinnerComponent } from './layout/my-spinner/my-spinner.component';
+import { StoreModule } from '@ngrx/store';
+import { CounterReducer } from './Reducer/MyCartCounterReducer/counter.reducer';
+import { MyScrollDirective } from './test/my-scroll.directive';
+import { CartComponent } from './component/cart/cart.component';
+import { MyCartService } from './Service/my-cart.service';
 
 
 @NgModule({
@@ -21,15 +27,19 @@ import { MyUserService } from './Service/my-user.service';
     FooterComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    MySpinnerComponent,
+    MyScrollDirective,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StoreModule.forRoot({counter: CounterReducer})
     ],
-  providers: [CookieService, MyUserService],
+  providers: [CookieService, MyCartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

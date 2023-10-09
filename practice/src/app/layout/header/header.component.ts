@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import introJs from 'intro.js';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthApiService, endpointsAuth } from 'src/app/Config/auth-api.service';
@@ -26,9 +27,16 @@ export class HeaderComponent implements OnInit {
 
   public user:any = [] || null;
   public hUser:any;
-
-  constructor(private cookie:CookieService, private uService: MyUserService, private authApi: AuthApiService) {}
-  
+  scrollY!: number;
+  constructor(
+    private cookie:CookieService, 
+    private uService: MyUserService, 
+    private authApi: AuthApiService, 
+    private store:Store<{counter: {counter: number}}>,
+    private elementRef: ElementRef
+    ) {}
+  counterdisplay!: number;
+  navStyle = "background-color:none;"
   ngOnInit(): void {
     if(this.cookie.check('user') === true){
       this.user = JSON.parse(this.cookie.get('user'));
@@ -37,6 +45,11 @@ export class HeaderComponent implements OnInit {
     
     this.hUser = this.cookie.check('user')
     console.log(this.hUser)
+
+    this.store.select('counter').subscribe(data => {
+      this.counterdisplay = data.counter;
+    })
+    // window.addEventListener('scroll', this.onScroll);
   }
 
   logout() {
@@ -45,6 +58,22 @@ export class HeaderComponent implements OnInit {
       this.user = JSON.parse(this.cookie.get('user'));
     }
   }
+
+  // onScroll() {
+  //   this.scrollY = window.scrollY;
+
+  //   if (scrollY > 337) {
+  //     // Add a CSS class to the element
+  //     this.elementRef.nativeElement.classList.add('bg-dark');
+  //   } else {
+  //     // Remove the CSS class from the element
+  //     this.elementRef.nativeElement.classList.remove('bg-dark');
+  //   }
+  // }
+
+  // onClick(){
+  //   this.navStyle = "background-color:powderblue;"
+  // }
 
   public tour()
   {

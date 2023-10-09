@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
+import { MySpinnerComponent } from 'src/app/layout/my-spinner/my-spinner.component';
 
 @Component({
   selector: 'app-signup',
