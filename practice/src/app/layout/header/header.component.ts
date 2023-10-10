@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
   public user:any = [] || null;
   public hUser:any;
   scrollY!: number;
+  carts: any = {}
   constructor(
     private cookie:CookieService, 
     private uService: MyUserService, 
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
     private store:Store<{counter: {counter: number}}>,
     private elementRef: ElementRef
     ) {}
-  counterdisplay!: number;
+  counterdisplay!: any;
   navStyle = "background-color:none;"
   ngOnInit(): void {
     if(this.cookie.check('user') === true){
@@ -44,11 +45,17 @@ export class HeaderComponent implements OnInit {
     }else
     
     this.hUser = this.cookie.check('user')
-    console.log(this.hUser)
 
-    this.store.select('counter').subscribe(data => {
-      this.counterdisplay = data.counter;
-    })
+    if(this.cookie.check('cart') === true)
+    {
+      this.carts = JSON.parse(this.cookie.get('cart'))
+      this.counterdisplay = Object.values(this.carts).reduce((init: any, current: any) => init + current["quantity"], 0);
+    } else {
+      this.store.select('counter').subscribe(data => {
+        this.counterdisplay = data.counter
+      })
+      console.log(this.cookie.check('cart'))
+    }
     // window.addEventListener('scroll', this.onScroll);
   }
 

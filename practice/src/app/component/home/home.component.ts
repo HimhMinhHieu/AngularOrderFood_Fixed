@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
     this.apis.get(endpoints.foods).subscribe((data) => {
       this.foods = data
     })
-    console.log(JSON.parse(this.cookie.get('cart')))
   }
 
   addCart(product: any)

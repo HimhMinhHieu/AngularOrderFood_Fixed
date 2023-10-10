@@ -35,13 +35,10 @@ export class CartComponent implements OnInit {
     this.store.dispatch(decrement({ payload: item.quantity }))
     if(item.id in this.carts)
     {
-      this.carts.subcribe((current: { [x: string]: any; }) => {
-        delete current[item.id];
-        this.cookie.set('cart', JSON.stringify(current));
-        console.log(this.carts)
-        return current;
-      })
-        
+        delete this.carts[item.id];
+        this.cookie.set('cart', JSON.stringify(this.carts));
+
+        return this.carts;
     }
   }
 }
