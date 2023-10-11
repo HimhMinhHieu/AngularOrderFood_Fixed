@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
 import { AuthApiService, endpointsAuth } from 'src/app/Config/auth-api.service';
+import { login } from 'src/app/Reducer/MyUserReducer/state.action';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,8 @@ export class LoginComponent {
     private cookie:CookieService,
     private apis: ApiService,
     private authApi: AuthApiService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) { }
 
   onSubmit() {
@@ -31,6 +34,7 @@ export class LoginComponent {
         })
         this.authApi.get(endpointsAuth.currentUser).subscribe((data) => {
           this.cookie.set('user', JSON.stringify(data))
+          this.store.dispatch(login({payload: data}))
         })
         if(this.cookie.check('user') == true)
         {

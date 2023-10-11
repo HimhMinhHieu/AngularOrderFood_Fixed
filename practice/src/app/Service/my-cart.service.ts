@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MyCartService {
   private carts: any = {};
   private cartsSubject = new BehaviorSubject<any>({});
@@ -13,6 +14,16 @@ export class MyCartService {
 
   getCart(): any {
     return this.carts;
+  }
+
+  Object = Object
+  countCart(): number {
+    const cart:any = this.cookie.get('cart') || null;
+    if(this.cookie.check('cart') === true)
+    {
+      return Object.values(cart).reduce((init, current:any) => init + current["quantity"], 0) as number;
+    }
+    return 0;
   }
 
   addToCart(product: any) {
@@ -44,5 +55,10 @@ export class MyCartService {
 
   getCartSubject(): Observable<any> {
     return this.cartsSubject.asObservable();
+  }
+
+  pay()
+  {
+    
   }
 }

@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import introJs from 'intro.js';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthApiService, endpointsAuth } from 'src/app/Config/auth-api.service';
+import { logout } from 'src/app/Reducer/MyUserReducer/state.action';
+import { MyCartService } from 'src/app/Service/my-cart.service';
 import { MyUserService } from 'src/app/Service/my-user.service';
 
 export interface User {
@@ -24,46 +26,40 @@ export interface User {
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  @Input() u!:any;
   public user:any = [] || null;
   public hUser:any;
-  scrollY!: number;
   carts: any = {}
   constructor(
     private cookie:CookieService, 
-    private uService: MyUserService, 
-    private authApi: AuthApiService, 
     private store:Store<{counter: {counter: number}}>,
-    private elementRef: ElementRef
     ) {}
   counterdisplay!: any;
   navStyle = "background-color:none;"
   ngOnInit(): void {
     if(this.cookie.check('user') === true){
-      this.user = JSON.parse(this.cookie.get('user'));
+      this.user = this.u;
       console.log(this.user)
     }else
     
     this.hUser = this.cookie.check('user')
 
-    if(this.cookie.check('cart') === true)
-    {
-      this.carts = JSON.parse(this.cookie.get('cart'))
-      this.counterdisplay = Object.values(this.carts).reduce((init: any, current: any) => init + current["quantity"], 0);
-    } else {
+   
       this.store.select('counter').subscribe(data => {
+        // data.counter = this.cartService.countCart()
         this.counterdisplay = data.counter
       })
       console.log(this.cookie.check('cart'))
-    }
+  
+    // this.store.select('user').subscribe(data => {
+
+    // })
     // window.addEventListener('scroll', this.onScroll);
   }
 
   logout() {
     this.cookie.deleteAll('/')
-    if(this.cookie.check('user') === false){
-      this.user = JSON.parse(this.cookie.get('user'));
-    }
+    this.store.dispatch(logout({payload: null}));
   }
 
   // onScroll() {

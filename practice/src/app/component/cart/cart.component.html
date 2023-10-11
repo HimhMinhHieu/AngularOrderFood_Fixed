@@ -12,11 +12,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let key of Object.keys(carts)">
-        <td>{{ carts[key].id }}</td>
+        <td>{{ carts[key].idThucAn }}</td>
         <td>{{ carts[key].name }}</td>
-        <td>{{ carts[key].unitPrice }} VNĐ</td>
+        <td>{{ carts[key].donGia }} VNĐ</td>
         <td>
-          <input type="number" value={{carts[key].quantity}}/>
+          <input type="number" value={{carts[key].soLuong}}/>
         </td>
         <td>
           <button type="button" (click)="deleteItem(carts[key])">&times;</button>

@@ -12,8 +12,8 @@ import { MyCartService } from 'src/app/Service/my-cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  
-  carts: any = {};
+  @Input() c!:any
+  carts!: any;
   constructor(private cartService: MyCartService,
      private router: Router,
      private cookie: CookieService,
@@ -24,10 +24,8 @@ export class CartComponent implements OnInit {
   Object = Object;
   ngOnInit(): void {
     if(this.cookie.check('cart') === true){
-      this.carts = JSON.parse(this.cookie.get('cart'));
+      this.carts = JSON.parse(this.cookie.get('cart'))
     }
-      
-    console.log(this.cookie.check('cart'))
   }
 
   deleteItem(item: any)

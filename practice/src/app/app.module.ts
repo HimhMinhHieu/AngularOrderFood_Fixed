@@ -18,6 +18,7 @@ import { CounterReducer } from './Reducer/MyCartCounterReducer/counter.reducer';
 import { MyScrollDirective } from './test/my-scroll.directive';
 import { CartComponent } from './component/cart/cart.component';
 import { MyCartService } from './Service/my-cart.service';
+import { UserReducer } from './Reducer/MyUserReducer/state.reducer';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { MyCartService } from './Service/my-cart.service';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({counter: CounterReducer})
+    StoreModule.forRoot({counter: CounterReducer, user: UserReducer})
     ],
   providers: [CookieService, MyCartService],
   bootstrap: [AppComponent]

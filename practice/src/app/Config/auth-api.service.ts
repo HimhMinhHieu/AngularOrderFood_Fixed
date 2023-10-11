@@ -8,6 +8,7 @@ const SERVER = "http://localhost:8080";
 
 export const endpointsAuth = {
   currentUser: `${SERVER}${SERVER_CONTEXT}/api/current-user/`,
+  pay: `${SERVER}${SERVER_CONTEXT}/api/pay/`,
 };
 
 @Injectable({

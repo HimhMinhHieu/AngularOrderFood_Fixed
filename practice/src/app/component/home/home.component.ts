@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
@@ -11,9 +11,11 @@ import { MyCartService } from 'src/app/Service/my-cart.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @Input() u!: any
   public foods:any = [];
+  user:any = [];
   count:number = 1;
-  private cart: any = {};
+  private carts: any = {};
   constructor(private apis: ApiService,
      private cookie: CookieService, 
      private store:Store<{counter: {counter: number}}>,
@@ -26,11 +28,24 @@ export class HomeComponent implements OnInit {
     this.apis.get(endpoints.foods).subscribe((data) => {
       this.foods = data
     })
+    this.user = this.u
+    console.log(this.user)
   }
 
   addCart(product: any)
   {
     this.store.dispatch(increment({ payload: this.count }));
-    this.cartService.addToCart(product);
+    if (product.id in this.carts) {
+      this.carts[product.id].quantity += 1;
+    } else {
+      this.carts[product.id] = {
+        idNguoiDung: this.user.id,
+        idThucAn: product.id,
+        name: product.name,
+        soLuong: 1,
+        donGia: product.price
+      };
+    }
+    this.cookie.set('cart', JSON.stringify(this.carts));
   }
 }
