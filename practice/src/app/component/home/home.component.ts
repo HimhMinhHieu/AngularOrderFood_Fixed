@@ -17,18 +17,21 @@ export class HomeComponent implements OnInit {
   count:number = 1;
   private carts: any = {};
   constructor(private apis: ApiService,
-     private cookie: CookieService, 
+     private cookie: CookieService,
      private store:Store<{counter: {counter: number}}>,
      private cartService: MyCartService
      ){
-    
+
    }
- 
+
   ngOnInit(): void {
     this.apis.get(endpoints.foods).subscribe((data) => {
       this.foods = data
     })
-    this.user = this.u
+    if(this.cookie.check('user') === true){
+      this.user = JSON.parse(this.cookie.get('user'))
+    }
+
     console.log(this.user)
   }
 
@@ -36,7 +39,7 @@ export class HomeComponent implements OnInit {
   {
     this.store.dispatch(increment({ payload: this.count }));
     if (product.id in this.carts) {
-      this.carts[product.id].quantity += 1;
+      this.carts[product.id].soLuong += 1;
     } else {
       this.carts[product.id] = {
         idNguoiDung: this.user.id,

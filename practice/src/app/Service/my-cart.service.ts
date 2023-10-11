@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -9,14 +10,25 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MyCartService {
   private carts: any = {};
   private cartsSubject = new BehaviorSubject<any>({});
-  
-  constructor(private cookie: CookieService) { }
+  counterdisplay!:any
+
+  constructor(private cookie: CookieService, private store: Store<{counter: {counter: number}}>) {
+
+  }
 
   getCart(): any {
     return this.carts;
   }
 
+  getCounter() {
+    this.store.select('counter').subscribe(data => {
+      // data.counter = this.cartService.countCart()
+      return this.counterdisplay = data.counter
+    })
+  }
+
   Object = Object
+
   countCart(): number {
     const cart:any = this.cookie.get('cart') || null;
     if(this.cookie.check('cart') === true)
@@ -59,6 +71,6 @@ export class MyCartService {
 
   pay()
   {
-    
+
   }
 }

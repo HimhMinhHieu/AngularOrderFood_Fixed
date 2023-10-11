@@ -10,20 +10,19 @@ import { CookieService } from 'ngx-cookie-service';
 export class AppComponent implements OnInit {
 
   user!:any
-  cart!:any
  constructor(private cookie: CookieService) {
   if(this.cookie.check('user') === true)
     {
       this.user = JSON.parse(this.cookie.get('user'))
     }
-  if(this.cookie.check('cart') === true)
-  {
-    this.cart = JSON.parse(this.cookie.get('cart'))
-  }
+  // if(this.cookie.check('cart') === true)
+  // {
+  //   this.cart = JSON.parse(this.cookie.get('cart'))
+  // }
  }
-  
+
   ngOnInit() {
-    
+
   }
-  
+
 }

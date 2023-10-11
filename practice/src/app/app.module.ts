@@ -38,7 +38,7 @@ import { UserReducer } from './Reducer/MyUserReducer/state.reducer';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({counter: CounterReducer, user: UserReducer})
+    StoreModule.forRoot({counter: CounterReducer})
     ],
   providers: [CookieService, MyCartService],
   bootstrap: [AppComponent]
