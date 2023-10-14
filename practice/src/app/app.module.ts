@@ -19,6 +19,11 @@ import { MyScrollDirective } from './test/my-scroll.directive';
 import { CartComponent } from './component/cart/cart.component';
 import { MyCartService } from './Service/my-cart.service';
 import { UserReducer } from './Reducer/MyUserReducer/state.reducer';
+import { DatbanComponent } from './component/datban/datban.component';
+import { FormDatBanComponent } from './component/form-dat-ban/form-dat-ban.component';
+import { DatmonOfflineComponent } from './component/datmon-offline/datmon-offline.component';
+import { ChonBanComponent } from './component/chon-ban/chon-ban.component';
+import { CartOffComponent } from './component/cart-off/cart-off.component';
 
 
 @NgModule({
@@ -31,7 +36,12 @@ import { UserReducer } from './Reducer/MyUserReducer/state.reducer';
     SignupComponent,
     MySpinnerComponent,
     MyScrollDirective,
-    CartComponent
+    CartComponent,
+    DatbanComponent,
+    FormDatBanComponent,
+    DatmonOfflineComponent,
+    ChonBanComponent,
+    CartOffComponent
   ],
   imports: [
     BrowserModule,

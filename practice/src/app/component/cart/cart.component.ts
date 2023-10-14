@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
@@ -16,6 +17,7 @@ export class CartComponent implements OnInit {
   @Input() c!:any
   carts!: any;
   hcarts!:any
+  quantityControl = new FormControl();
   constructor(private cartService: MyCartService,
      private router: Router,
      private cookie: CookieService,
@@ -64,5 +66,18 @@ export class CartComponent implements OnInit {
     //   this.cookie.delete('cart')
     //   this.store.dispatch(update({payload: 0}))
     // })
+  }
+
+  changeQuantity(item:any, event: Event)
+  {
+
+    // if(item.idThucAn in this.carts)
+    // {
+    //   this.cookie.set('cart', JSON.stringify(this.carts));
+    //   this.carts = { ...this.carts, [item.idThucAn]: { ...this.carts[item.idThucAn], "soLuong": parseInt() } };
+    //     console.log(this.carts)
+
+    //     return this.carts;
+    // }
   }
 }

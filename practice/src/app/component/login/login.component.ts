@@ -31,25 +31,35 @@ export class LoginComponent {
       try{
         this.apis.login(endpoints.login, this.loginForm.value).subscribe((data) => {
           this.cookie.set('token', data.toString())
+          this.authApi.get(endpointsAuth.currentUser).subscribe((data) => {
+            this.cookie.set('user', JSON.stringify(data))
+            this.store.dispatch(login({payload: data}))
+            console.log(this.cookie.check('user'))
+            if(this.cookie.check('user') === true)
+            {
+              this.router.navigate(['/']);
+              alert("Bạn đã đăng nhập thành công")
+            } else
+            {
+              alert("Hãy thử lại lần nữa")
+            }
+          })
         })
-        this.authApi.get(endpointsAuth.currentUser).subscribe((data) => {
-          this.cookie.set('user', JSON.stringify(data))
-          this.store.dispatch(login({payload: data}))
-        })
-        if(this.cookie.check('user') == true)
-        {
-          this.router.navigate(['/']);
-          alert("Bạn đã đăng nhập thành công")
-        } else 
-        {
-          alert("Hãy thử lại lần nữa")
-        }
+
+        // if(this.cookie.check('user') === true)
+        // {
+        //   this.router.navigate(['/']);
+        //   alert("Bạn đã đăng nhập thành công")
+        // } else
+        // {
+        //   alert("Hãy thử lại lần nữa")
+        // }
       }catch(error)
       {
         console.log(error);
       }
-     
+
     }
-    
+
   }
 }

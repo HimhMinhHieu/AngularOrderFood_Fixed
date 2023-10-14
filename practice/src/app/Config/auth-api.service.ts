@@ -9,6 +9,8 @@ const SERVER = "http://localhost:8080";
 export const endpointsAuth = {
   currentUser: `${SERVER}${SERVER_CONTEXT}/api/current-user/`,
   pay: `${SERVER}${SERVER_CONTEXT}/api/pay/`,
+  datban: `${SERVER}${SERVER_CONTEXT}/api/datban/`,
+  payOff: `${SERVER}${SERVER_CONTEXT}/api/payoffline/`
 };
 
 @Injectable({
@@ -20,7 +22,7 @@ export class AuthApiService {
 
   get(endpoint: string) {
     return this.http.get(endpoint, {
-      responseType: 'json',
+
       headers: {
         Authorization: this.cookieService.get('token'),
       },
@@ -29,6 +31,7 @@ export class AuthApiService {
 
   post(endpoint: string, body: any) {
     return this.http.post(endpoint, body, {
+      observe: 'response',
       headers: {
         Authorization: this.cookieService.get('token'),
       },

@@ -11,6 +11,7 @@ export const endpoints = {
   foods: `${SERVER}${SERVER_CONTEXT}/api/food/`,
   login: `${SERVER}${SERVER_CONTEXT}/api/login/`,
   register: `${SERVER}${SERVER_CONTEXT}/api/dangky/`,
+  chiNhanh: (idChiNhanh: any) => `${SERVER}${SERVER_CONTEXT}/api/ban/${idChiNhanh}/`
 };
 
 @Injectable({

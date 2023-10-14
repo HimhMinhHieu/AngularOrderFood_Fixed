@@ -4,13 +4,23 @@ import { LoginComponent } from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
 import { SignupComponent } from './component/signup/signup.component';
 import { CartComponent } from './component/cart/cart.component';
+import { DatbanComponent } from './component/datban/datban.component';
+import { FormDatBanComponent } from './component/form-dat-ban/form-dat-ban.component';
+import { ChonBanComponent } from './component/chon-ban/chon-ban.component';
+import { DatmonOfflineComponent } from './component/datmon-offline/datmon-offline.component';
+import { CartOffComponent } from './component/cart-off/cart-off.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: SignupComponent},
-  {path: 'cart', component: CartComponent}
+  {path: 'cart', component: CartComponent},
+  {path: 'datban/:idChiNhanh', component: DatbanComponent},
+  {path: 'datban/:idChiNhanh/ban/:idBan', component: FormDatBanComponent},
+  {path: 'chonban', component: ChonBanComponent},
+  {path: 'chonban/:idBan', component: DatmonOfflineComponent},
+  {path: 'cartoff', component: CartOffComponent}
   // {path: 'forgot', component: ForgotPasswordComponent},
   // {path: 'register', component: SigninComponent},
   // {path: '**', component: PageNotFoundComponent},
