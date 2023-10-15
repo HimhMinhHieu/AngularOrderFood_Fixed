@@ -25,8 +25,12 @@
   </tbody>
 </table>
 
-<button type="button" (click)="pay()" class="btn btn-info">Thanh toán</button>
+<button type="button" [disabled]="!huser" (click)="pay()" class="btn btn-info">Thanh toán</button>
 
 <div *ngIf="hcarts === false" class="alert alert-info mt-2">
   Không có sản phẩm trong giỏ!
+</div>
+
+<div *ngIf="huser === false" class="alert alert-danger mt-2">
+  Bạn phải <a [routerLink]="['/login']" routerLinkActive="router-link-active">Đăng nhập</a> trước để thanh toán
 </div>

@@ -136,11 +136,11 @@ export class HeaderComponent implements OnInit {
           intro: '<div class="text-center">Thực Đơn là nơi bạn có thể biết được quán chúng tôi sẽ phục vụ những gì</div>',
           title: 'Thực Đơn',
         },
-        {
-          element: '#Seventh',
-          intro: '<div class="text-center">Tin Tức là nơi bạn có thể biết thêm về quán</div>',
-          title: 'Tin Tức',
-        },
+        // {
+        //   element: '#Seventh',
+        //   intro: '<div class="text-center">Tin Tức là nơi bạn có thể biết thêm về quán</div>',
+        //   title: 'Tin Tức',
+        // },
         {
           element: '#Eighth',
           intro: '<div class="text-center">Mọi thắc mắc về quán bạn có thể liên hệ chúng tôi tại đây</div>',

@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
 import { AuthApiService, endpointsAuth } from 'src/app/Config/auth-api.service';
 import { login } from 'src/app/Reducer/MyUserReducer/state.action';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -37,11 +38,28 @@ export class LoginComponent {
             console.log(this.cookie.check('user'))
             if(this.cookie.check('user') === true)
             {
-              this.router.navigate(['/']);
-              alert("Bạn đã đăng nhập thành công")
+              Swal.fire({
+                icon: 'success',
+                title: 'Congratulations',
+                text: 'Chúc mừng bạn đã đăng nhập thành công',
+              }).then((result) => {
+                if(result.isConfirmed)
+                {
+                  this.router.navigate(['/']);
+                }
+              })
             } else
             {
-              alert("Hãy thử lại lần nữa")
+              Swal.fire({
+                icon: 'error',
+                title: 'Xin lỗi bạn...',
+                text: 'Đã có lỗi xảy ra xin hãy thử lại'
+              }).then((result) =>{
+                if(result.isConfirmed)
+                {
+                  this.router.navigate(['/login']);
+                }
+              })
             }
           })
         })

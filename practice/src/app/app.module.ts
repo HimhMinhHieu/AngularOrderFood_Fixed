@@ -24,6 +24,10 @@ import { FormDatBanComponent } from './component/form-dat-ban/form-dat-ban.compo
 import { DatmonOfflineComponent } from './component/datmon-offline/datmon-offline.component';
 import { ChonBanComponent } from './component/chon-ban/chon-ban.component';
 import { CartOffComponent } from './component/cart-off/cart-off.component';
+import { Page404Component } from './component/page404/page404.component';
+import { IntroduceComponent } from './component/introduce/introduce.component';
+import { MenuComponent } from './component/menu/menu.component';
+import { ContactComponent } from './component/contact/contact.component';
 
 
 @NgModule({
@@ -41,7 +45,11 @@ import { CartOffComponent } from './component/cart-off/cart-off.component';
     FormDatBanComponent,
     DatmonOfflineComponent,
     ChonBanComponent,
-    CartOffComponent
+    CartOffComponent,
+    Page404Component,
+    IntroduceComponent,
+    MenuComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AuthApiService, endpointsAuth } from 'src/app/Config/auth-api.service';
 import { decrement, update } from 'src/app/Reducer/MyCartCounterReducer/counter.actions';
 import { MyCartService } from 'src/app/Service/my-cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +19,8 @@ export class CartComponent implements OnInit {
   carts!: any;
   hcarts!:any
   quantityControl = new FormControl();
+  user!: any
+  huser!: any
   constructor(private cartService: MyCartService,
      private router: Router,
      private cookie: CookieService,
@@ -33,6 +36,11 @@ export class CartComponent implements OnInit {
     }
     console.log(this.carts)
     this.hcarts = this.cookie.check('cart')
+    if(this.cookie.check('user') === true)
+    {
+      this.user = JSON.parse(this.cookie.get('user'))
+    }
+    this.huser = this.cookie.check('user')
   }
 
   deleteItem(item: any)
@@ -61,6 +69,16 @@ export class CartComponent implements OnInit {
       this.carts = null
       this.cookie.delete('cart')
       this.store.dispatch(update({payload: 0}))
+      Swal.fire({
+        icon: 'success',
+        title: 'Congratulations',
+        text: 'Chúc mừng bạn đã thanh toán thành công',
+      }).then((result) => {
+        if(result.isConfirmed)
+        {
+          this.router.navigate(['/']);
+        }
+      })
     })
     //   this.carts = null
     //   this.cookie.delete('cart')

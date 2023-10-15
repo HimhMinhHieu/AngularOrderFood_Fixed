@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ApiService, endpoints } from 'src/app/Config/api.service';
 import { MySpinnerComponent } from 'src/app/layout/my-spinner/my-spinner.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -52,7 +53,16 @@ export class SignupComponent {
     this.Apis.post(endpoints.register, formData)
       .subscribe(
         (response) => {
-          this.router.navigate(['/login'])
+          Swal.fire({
+            icon: 'success',
+            title: 'Congratulations',
+            text: 'Chúc mừng bạn đã đăng nhập thành công',
+          }).then((result) => {
+            if(result.isConfirmed)
+            {
+              this.router.navigate(['/login']);
+            }
+          })
         }
       );
   }

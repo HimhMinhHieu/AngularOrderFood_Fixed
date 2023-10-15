@@ -76,7 +76,7 @@
                     <a class="nav-link nav-1" aria-current="page" [routerLink]="['/home']" routerLinkActive="router-link-active">HOME</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link nav-1" href="https://mdbootstrap.com/docs/standard/" target="_blank" data-title="Second" id="Second">GIỚI THIỆU</a>
+                    <a class="nav-link nav-1" [routerLink]="['/introduce']" routerLinkActive="router-link-active" data-title="Second" id="Second">GIỚI THIỆU</a>
                   </li>
                       <li *ngIf="hUser === false" class="nav-item">
                           <a class="nav-link nav-1" [routerLink]="['/login']" routerLinkActive="router-link-active" id="Third">ĐĂNG NHẬP</a>
@@ -111,13 +111,11 @@
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link nav-1" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow"
-                    target="_blank" id="Sixth">THỰC ĐƠN</a>
+                  <a class="nav-link nav-1" [routerLink]="['/menu']" routerLinkActive="router-link-active" id="Sixth">THỰC ĐƠN</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link nav-1" href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA" rel="nofollow"
-                    target="_blank" id="Eighth">LIÊN HỆ</a>
+                  <a class="nav-link nav-1" [routerLink]="['/contact']" routerLinkActive="router-link-active" id="Eighth">LIÊN HỆ</a>
                 </li>
 
                 <li class="nav-item ms-2">
@@ -187,7 +185,7 @@
               <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                 <div class="d-flex justify-content-center align-items-center h-100">
                   <div class="text-white text-center">
-                    <h2>You can place here any content</h2>
+                    <h2>You deserve what you need and we serve what you want</h2>
                   </div>
                 </div>
               </div>
@@ -200,7 +198,7 @@
               >
                 <div class="d-flex justify-content-center align-items-center h-100">
                   <div class="text-white text-center">
-                    <h2>And cover it with any mask</h2>
+                    <h2>Come to my Restaurant and enjoy</h2>
                     <button
                       class="btn btn-outline-light btn-lg m-2 btn-tour"
                       (click)="tour()"
